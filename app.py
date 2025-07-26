@@ -78,7 +78,7 @@ def search_answer(query, top_k=5):
 # ==========================================
 # 5. Streamlit UI
 # ==========================================
-st.title("Slowletter Q&A Demo")
+st.title("Slow News Insight Bot.")
 
 query = st.text_area("질문을 입력하세요:")
 
