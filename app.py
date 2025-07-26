@@ -102,8 +102,7 @@ ans = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role":"user","content":prompt}]
     ).choices[0].message.content
-
-    return ans
+return ans
 
 # ==========================================
 # 5. Streamlit UI
