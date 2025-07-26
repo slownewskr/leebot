@@ -66,19 +66,48 @@ def search_answer(query, top_k=5):
     )
 
     # GPT 답변 생성
-    prompt = f"다음 컨텍스트를 참고해 질문에 답해 주세요.\n\n질문:\n{query}\n\n컨텍스트:\n{context}"
 
-    ans = client.chat.completions.create(
+prompt = f"""
+당신은 '슬로우레터(Slowletter)' 스타일의 뉴스 분석 어시스턴트입니다.
+
+역할:
+- 주어진 검색 문서(맥락)와 질문을 기반으로, 한국어로 간결하고 깊이 있게 설명합니다.
+- 답변은 슬로우레터 특유의 **짧은 문장, 맥락 강조, 불필요한 군더더기 없는 문체**로 작성합니다.
+- 팩트와 맥락 중심. 과장이나 추측은 피합니다.
+
+작성 규칙:
+1. **출력 형식**:
+   - 첫 줄에 핵심 요약 (짧고 단정적인 한 문장)
+   - 이후 불릿 포인트(`•`)로 맥락/세부 설명을 나눠 주세요.
+   - 가능한 경우 문서 출처(제목 또는 날짜)를 괄호로 표기해 주세요.
+
+2. **참고한 문서**
+   - 마지막에 "참고: ○○(날짜)" 형태로 관련 문서를 표기해 주세요.
+   - 출처가 여러 개면 쉼표로 구분.
+
+3. 스타일:
+   - 건조하고 간결한 어조
+   - 인용은 원문 표현을 그대로 사용
+
+다음은 질문과 검색된 문서들입니다.
+
+질문:
+{query}
+
+검색된 문서:
+{context}
+"""
+
+ans = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role":"user","content":prompt}]
     ).choices[0].message.content
-
-    return ans
+return ans
 
 # ==========================================
 # 5. Streamlit UI
 # ==========================================
-st.title("Slowletter Q&A Demo")
+st.title("Slow News Insight Bot.")
 
 query = st.text_area("질문을 입력하세요:")
 
