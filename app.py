@@ -98,8 +98,7 @@ prompt = f"""
 {context}
 """
 
-
-    ans = client.chat.completions.create(
+ans = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role":"user","content":prompt}]
     ).choices[0].message.content
