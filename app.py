@@ -19,11 +19,11 @@ client = OpenAI(api_key=API_KEY)
 # ==========================================
 # 2. 구글 드라이브에서 데이터 파일 다운로드
 # ==========================================
-INDEX_FILE_ID = "10O9D9kIHHbRPMJN_52mPCSjYklgBZpMJ"  # 드라이브에서 추출한 파일 ID
-CSV_FILE_ID = "1HpNAK0vO11XiifJexX7t3Ly902WSGKEJ"      # 드라이브에서 추출한 파일 ID
+INDEX_FILE_ID = "1aCOwVlZ5HREDuSrAH5rUW8nUY3hfnMJg"  # 드라이브에서 추출한 파일 ID
+CSV_FILE_ID = "1jYrBpdo40JRrAuGuJ6m6_q6o6uFhs4n8"      # 드라이브에서 추출한 파일 ID
 
-index_file = "slowletter_entities.index"
-csv_file = "slowletter_full_with_entities.csv"
+index_file = "faiss_vectordb_latest.bin"
+csv_file = "slowletter_data_latest.csv"
 
 if not os.path.exists(index_file):
     st.write("Index 파일을 다운로드 중입니다...")
